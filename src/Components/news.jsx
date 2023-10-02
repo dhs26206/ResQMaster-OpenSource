@@ -1,0 +1,1 @@
+export let News=["NDRF Recently got calls from Dharamshala, Himachal Pradesh of Landslides around HPCA Stadium , A company of 300 team are on their way to rescue !", "Manpreet got Rescued from CharBagh", "Gaurav forced to Marry in Andaman with a Tribal Man","Jatin Bus will  Drown in Sutlej Tomorrow","Dhruv is the Leader of the Group","Disko","aeogejrg"];

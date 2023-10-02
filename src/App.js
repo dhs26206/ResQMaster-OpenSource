@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navbar from './Components/Navbar';
+// import Danger from './Components/User-Map-Location';
+import { Component } from 'react';
+// import Bulletin from './Components/Bulletin';
+import Combined from './Components/Combined';
+import Login from './Components/Login';
+class App extends Component{
+  state={
+    AgencyPage:false,
+    Text:'Agency Login'
+  }
+  // AgencyHandle=()=>{
+  //   this.setState(prevState=>({
+  //     AgencyPage:!prevState.AgencyPage,
+  //     Text:{prevState.AgencyPage ? "Home" : "Agency Login"}
+  //   }));
+  // }
+  AgencyHandle = () => {
+    this.setState(prevState => ({
+      AgencyPage: !prevState.AgencyPage,
+      Text: !prevState.AgencyPage ? "Home" : "Agency Login"
+      
+    }));
+  }
+  
+  render(){
+    
+    return(
+      <>
+       <Navbar AgencyClicked={this.AgencyHandle} text={this.state.Text}/>
+       {!this.state.AgencyPage ? <Combined /> : <Login />}
+       </>
+    )       
 }
-
+}
 export default App;
