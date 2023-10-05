@@ -2,8 +2,11 @@
 import React ,{useState} from "react";
 import CryptoJS from "crypto-js";
 import './danger.css';
-  
+import { useNavigate } from "react-router-dom";
 const Login=()=>{
+    let navigate = useNavigate(); 
+    
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleUserName=(event)=>{
@@ -19,6 +22,24 @@ const Login=()=>{
             username,
             password:hashedPassword
         };
+        let link="https://webhook.site/b8b49132-82ff-495b-800d-8ed04aa137f9"
+        fetch(link, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then(response => {
+            if (response.ok) {
+                navigate("",{replace:true})
+              window.location.href="http://localhost:3001/"
+              
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          })
+        .catch((error)=>{console.log(error)});
+
         // fetch had to do here
     }
     return(
