@@ -3,8 +3,10 @@ import{ WillTell,lat,long} from "./User-Map-Location";
 import React ,{useState} from "react";
 // import data from "./Agencies-Location.json";
 // import sampleMarkers from './markers.json';
-
-import data from "./markers.json"
+const backend ="http://127.0.0.1:3005";
+const datapre = await fetch(`${backend}/getAgencies`);
+const data= await datapre.json();
+console.log(data);
 // import { MapShow } from "./map check";
 
 const Combined=()=>{

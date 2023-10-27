@@ -3,6 +3,7 @@ import React ,{useState} from "react";
 import CryptoJS from "crypto-js";
 import './danger.css';
 import { useNavigate } from "react-router-dom";
+const backend ="http://127.0.0.1:3005";
 const Login=()=>{
     let navigate = useNavigate(); 
     
@@ -22,23 +23,23 @@ const Login=()=>{
             username,
             password:hashedPassword
         };
-        let link="https://webhook.site/b8b49132-82ff-495b-800d-8ed04aa137f9"
+        let link=`${backend}/login`;
         fetch(link, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-          }).then(response => {
-            if (response.ok) {
-                navigate("",{replace:true})
-              window.location.href="http://localhost:3001/"
+            body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
+        //   }).then(response => {
+        //     if (response.ok) {
+        //         navigate("",{replace:true})
+        //       window.location.href="http://localhost:3001/"
               
-            } else {
-              throw new Error('Network response was not ok');
-            }
-          })
-        .catch((error)=>{console.log(error)});
+        //     } else {
+        //       throw new Error('Network response was not ok');
+        //     }
+        //   })
+       
 
         // fetch had to do here
     }
@@ -50,7 +51,7 @@ const Login=()=>{
                     <p>UserName</p>
                     <div className="flex mb-12 border-gray-600 rounded-lg border-2">
                     <img src="./user.png" className="ml-2" alt="user" style={{height:'auto',width:'2.5rem'}} />
-                    <input className="bg-slate-100 ml-5 w-52 h-10 placeholder:ml-1 px-2 my-1 mr-1" type="text" name="username" value={username} onChange={handleUserName} placeholder="UserName" />
+                    <input className="bg-slate-100 ml-5 w-52 h-10 placeholder:ml-1 px-2 my-1 mr-1" autoComplete='off' type="text" name="username" value={username} onChange={handleUserName} placeholder="UserName" />
                     </div>
                     <p>Password</p>
                     <div className="flex mb-12 border-gray-600 rounded-lg border-2">

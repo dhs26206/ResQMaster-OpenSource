@@ -7,6 +7,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from "leaflet";
 export let lat=0;
 export let long=0;
+const backend ="http://127.0.0.1:3005"
 const customIcon = L.icon({
     iconUrl: "./redmark.png",
     iconSize: [32, 32], // adjust the size of the icon
@@ -74,7 +75,7 @@ const Inter=({GetForm})=>{
     )
 }
 const Form=({LocationUp})=>{
-    let link ="https://webhook.site/b8b49132-82ff-495b-800d-8ed04aa137f9"
+    let link =`${backend}/postRequest`
     const [name,setName]=useState('');
     const [number,setNumber]=useState('');
     const [type,setType]=useState('');
@@ -92,7 +93,7 @@ const Form=({LocationUp})=>{
     }
     const DoPOST=(e)=>{
         e.preventDefault();
-        const data={"name":name,"contactNumber":number,"longitude":long,"latitude":lat,"typeOfDisaster":type};
+        const data={"name":name,"contact":number,"long":long,"lat":lat,"disastertype":type};
         fetch(link, {
             method: 'POST',
             headers: {
@@ -108,13 +109,13 @@ const Form=({LocationUp})=>{
             <div className="flex flex-col flex-nowrap   element   border-gray-500 border-2   rounded-xl">
                 <h1 className=" text-4xl pb-10 border-b-2 border-gray-800">Fill the Following Details !</h1>
                 <div className="pl-5 flex flex-col " style={{overflow: 'scroll'}}>
-                <form className="" action="https://www.toptal.com/developers/postbin/1696449678839-6364536590408" method="post"  onSubmit={DoPOST}>
+                <form className=""  method="post"  onSubmit={DoPOST}>
                 <p className=" text-xs italic pb-5"><span className=" not-italic text-base font-bold :">Requestee 's Name :</span>( will be checked during verification )</p>
-                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " name="name" type="text" onChange={changeName} placeholder="Enter Full Name" />
+                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " autoComplete='off' name="name" type="text" onChange={changeName} placeholder="Enter Full Name" />
                 <p className=" text-xs italic pt-12 pb-5"><span className=" not-italic text-base font-bold :">Contact No:</span></p>
-                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " name="contact" type="text" onChange={changeNumber} placeholder="Mobile No" />
+                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " autoComplete='off' name="contact" type="text" onChange={changeNumber} placeholder="Mobile No" />
                 <p className=" text-xs italic pt-12 pb-5"><span className=" not-italic text-base font-bold :">Type of Disaster:</span>(Description)</p>
-                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " name="type" type="text" onChange={changeType} placeholder="Enter Here" />
+                <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " autoComplete='off' name="type" type="text" onChange={changeType} placeholder="Enter Here" />
                 {/* <p className=" text-xs italic pt-12 pb-5"><span className=" not-italic text-base font-bold :">Requestee 's Name :</span>( will be checked during verification )</p>
                 <input className=" min-w-[50%] h-8 rounded-md border-2 border-gray-500 " type="text" placeholder="Enter Full Name" /> */}
                 <input className='hidden' type="text" name='long' value={long}/>
@@ -144,8 +145,8 @@ export function MapShow({markers}) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {markers.map((marker, index) => (
-        <Marker key={index} position={[marker.lat, marker.lon]} icon={customIcon}>
-          <Popup>{marker.title}</Popup>
+        <Marker key={index} position={[marker.lat, marker.long]} icon={customIcon}>
+          <Popup>{marker.agency_name}</Popup>
         </Marker>
         
       ))}
