@@ -1,6 +1,6 @@
 import React from "react";
 // import { News } from "./news";
-import Danger from "./User-Map-Location";
+// import Danger from "./User-Map-Location";
 import { getBack } from "./URLutility";
 const backend =getBack();
 const News1 =await fetch(`${backend}/getPub`);

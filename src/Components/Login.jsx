@@ -21,12 +21,12 @@ const Login=()=>{
             password:hashedPassword
         };
         let link=`${backend}/login`;
-        let respnse=await fetch(link, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
+        let respnse=await fetch(link, { method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(data)}).catch((error)=>{console.log(error)});
+            
+            // headers: {
+            //   'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
         if (respnse.status===200){
             window.location.href=`https://example.com/user/${username}`;
         }
