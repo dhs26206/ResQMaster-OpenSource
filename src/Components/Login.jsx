@@ -2,12 +2,9 @@
 import React ,{useState} from "react";
 import CryptoJS from "crypto-js";
 import './danger.css';
-import { useNavigate } from "react-router-dom";
-const backend ="http://127.0.0.1:3005";
+import { getBack } from "./URLutility";
+const backend =getBack();
 const Login=()=>{
-    let navigate = useNavigate(); 
-    
-    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleUserName=(event)=>{
@@ -16,7 +13,7 @@ const Login=()=>{
     const handlePassword=(event)=>{
         setPassword(event.target.value);
     }
-    const DoPOST=(event)=>{
+    const DoPOST= async(event)=>{
         event.preventDefault();
         let hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
         let data={
@@ -24,12 +21,15 @@ const Login=()=>{
             password:hashedPassword
         };
         let link=`${backend}/login`;
-        fetch(link, {
+        let respnse=await fetch(link, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
+        if (respnse.status===200){
+            window.location.href=`https://example.com/user/${username}`;
+        }
         //   }).then(response => {
         //     if (response.ok) {
         //         navigate("",{replace:true})

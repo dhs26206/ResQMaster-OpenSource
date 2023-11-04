@@ -3,11 +3,11 @@ import React  from "react";
 import './danger.css';
 import "leaflet/dist/leaflet.css"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
+import { getBack } from './URLutility';
 import L from "leaflet";
 export let lat=0;
 export let long=0;
-const backend ="http://127.0.0.1:3005"
+const backend =getBack();
 const customIcon = L.icon({
     iconUrl: "./redmark.png",
     iconSize: [32, 32], // adjust the size of the icon

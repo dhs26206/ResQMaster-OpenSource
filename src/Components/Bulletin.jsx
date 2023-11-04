@@ -1,7 +1,8 @@
 import React from "react";
 // import { News } from "./news";
 import Danger from "./User-Map-Location";
-const backend ="http://127.0.0.1:3005"
+import { getBack } from "./URLutility";
+const backend =getBack();
 const News1 =await fetch(`${backend}/getPub`);
 const News=await News1.json();
 console.log(`${backend}/getPub`)

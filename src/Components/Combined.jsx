@@ -1,9 +1,10 @@
 import Bulletin from "./Bulletin";
 import{ WillTell,lat,long} from "./User-Map-Location";
 import React ,{useState} from "react";
+import { getBack } from "./URLutility";
 // import data from "./Agencies-Location.json";
 // import sampleMarkers from './markers.json';
-const backend ="http://127.0.0.1:3005";
+const backend =getBack();
 const datapre = await fetch(`${backend}/getAgencies`);
 const data= await datapre.json();
 console.log(data);
