@@ -28,7 +28,10 @@ const Login=()=>{
             // },
             // body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
         if (respnse.status===200){
-            window.location.href=`https://example.com/user/${username}`;
+            window.location.href=`https://loginresq.azurewebsites.net/user/${username}`;
+        }
+        else{
+            window.alert("Incorrect Ceredentials !");
         }
         //   }).then(response => {
         //     if (response.ok) {
