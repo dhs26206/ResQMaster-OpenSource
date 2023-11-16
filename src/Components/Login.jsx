@@ -28,7 +28,7 @@ const Login=()=>{
             // },
             // body: JSON.stringify(data)}) .catch((error)=>{console.log(error)});
         if (respnse.status===200){
-            window.location.href=`https://loginresq.azurewebsites.net/user/${username}`;
+            window.location.href=`https://por.ddks.live/user/${username}`;
         }
         else{
             window.alert("Incorrect Ceredentials !");
