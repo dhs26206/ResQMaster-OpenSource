@@ -1,4 +1,4 @@
 export function getBack(){
-    let backend="https://back.ddks.live";
+    let backend="https://video.ddks.live";
     return backend;
 }
