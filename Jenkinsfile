@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('ShowFiles') {
-      steps {
-        sh 'ls -la'
+      parallel {
+        stage('ShowFiles') {
+          steps {
+            sh 'ls -la'
+          }
+        }
+
+        stage('NPM Install') {
+          steps {
+            sh 'npm i'
+          }
+        }
+
       }
     }
 
