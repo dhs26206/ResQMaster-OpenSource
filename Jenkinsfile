@@ -21,6 +21,13 @@ pipeline {
           }
         }
 
+        stage('Bun') {
+          steps {
+            sh '''bun i
+ls'''
+          }
+        }
+
       }
     }
 
