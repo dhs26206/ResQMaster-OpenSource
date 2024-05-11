@@ -8,26 +8,14 @@ pipeline {
     }
 
     stage('ShowFiles') {
-      parallel {
-        stage('ShowFiles') {
-          steps {
-            sh 'ls -la'
-          }
-        }
+      steps {
+        sh 'ls -la'
+      }
+    }
 
-        stage('NPM Install') {
-          steps {
-            sh 'npm i'
-          }
-        }
-
-        stage('Bun') {
-          steps {
-            sh '''bun i
-ls'''
-          }
-        }
-
+    stage('') {
+      steps {
+        sh '$PATH'
       }
     }
 
