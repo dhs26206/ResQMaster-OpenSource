@@ -13,9 +13,9 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('error') {
       steps {
-        sh '$PATH'
+        sh 'npm install'
       }
     }
 
