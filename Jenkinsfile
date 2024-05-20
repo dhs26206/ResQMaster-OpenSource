@@ -1,23 +1,33 @@
 pipeline {
-  agent any
-  stages {
-    stage('checkCode') {
-      steps {
-        git(url: 'https://github.com/dhs26206/ResQMaster-OpenSource', branch: 'main')
-      }
+    agent any
+
+    environment {
+        NVM_DIR = "$HOME/.nvm"
     }
 
-    stage('ShowFiles') {
-      steps {
-        sh 'ls -la'
-      }
-    }
+    stages {
+        stage('Initialize NVM') {
+            steps {
+                sh '''
+                export NVM_DIR="$HOME/.nvm"
+                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+                nvm install 20.13.1
+                nvm use 20.13.1
+                '''
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
 
-    stage('error') {
-      steps {
-        sh 'npm install'
-      }
+        stage('List Files') {
+            steps {
+                sh 'ls -al'
+            }
+        }
     }
-
-  }
 }
