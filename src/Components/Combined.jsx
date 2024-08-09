@@ -7,7 +7,7 @@ import { getBack } from "./URLutility";
 const backend =getBack();
 const datapre = await fetch(`${backend}/getAgencies`);
 const data= await datapre.json();
-console.log(data);
+// console.log(data);
 // import { MapShow } from "./map check";
 
 const Combined=()=>{
@@ -24,8 +24,8 @@ const Combined=()=>{
     //     console.log(event);
     // }
     const handleLocationUpdate=()=>{
-        console.log(long,"Heyy");
-        console.log(lat,"Lattitude");
+        // console.log(long,"Heyy");
+        // console.log(lat,"Lattitude");
         Next1();
     }
     

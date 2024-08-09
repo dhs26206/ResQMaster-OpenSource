@@ -4,9 +4,20 @@ import React from "react";
 import { getBack } from "./URLutility";
 const backend =getBack();
 const News1 =await fetch(`${backend}/getPub`);
+try {
+    // Making a fetch request with 'no-cors' mode
+    const response = await fetch("https://tel.ddks.live", {
+        method: 'GET',
+        mode: 'no-cors' // This disables CORS checks
+    });
+    
+    // Note: You cannot access the response body or headers here due to 'no-cors' mode
+} catch (error) {
+    // console.error("Error fetching data from https://tel.ddks.live:", error);
+}
 const News=await News1.json();
-console.log(`${backend}/getPub`)
-console.log(News);
+// console.log(`${backend}/getPub`)
+// console.log(News);
 const Bulletin=()=>{
     return(
         <div className="flex flex-col element md:w-[30%] w-full rounded-xl border-gray-500 border-2  ">
