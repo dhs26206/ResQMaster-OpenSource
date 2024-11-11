@@ -6,10 +6,11 @@ const backend =getBack();
 const News1 =await fetch(`${backend}/getPub`);
 try {
     // Making a fetch request with 'no-cors' mode
-    const response = await fetch("https://tel.ddks.live", {
+    await fetch("https://tel.ddks.live", {
         method: 'GET',
         mode: 'no-cors' // This disables CORS checks
     });
+   
     
     // Note: You cannot access the response body or headers here due to 'no-cors' mode
 } catch (error) {
