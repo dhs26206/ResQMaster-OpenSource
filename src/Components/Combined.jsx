@@ -1,5 +1,5 @@
 import Bulletin from "./Bulletin";
-import{ WillTell,lat,long} from "./User-Map-Location";
+import{ WillTell} from "./User-Map-Location";
 import React ,{useState} from "react";
 import { getBack } from "./URLutility";
 // import data from "./Agencies-Location.json";
